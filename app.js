@@ -9,19 +9,7 @@ class Book {
 //  UI Class
 class UI {
   static displayBooks() {
-    const StoredBooks = [
-      {
-        title: "Book One",
-        author: "John Doe",
-        isbn: "3434343"
-      },
-      {
-        title: "Book Two",
-        author: "Jane Doe",
-        isbn: "4343434"
-      }
-    ];
-    const books = StoredBooks;
+    const books = Store.getBooks();
 
     books.forEach(book => {
       UI.addBookToList(book);
@@ -125,6 +113,9 @@ document.querySelector("#book-form").addEventListener("submit", e => {
     //  Add Book to UI
     UI.addBookToList(book);
 
+    //  Add Book to Store
+    Store.addBook(book);
+
     // Show success message
     UI.showAlert("Book Added", "success");
 
@@ -135,8 +126,11 @@ document.querySelector("#book-form").addEventListener("submit", e => {
 
 //  Event: Remove a Book
 document.querySelector("#book-list").addEventListener("click", e => {
-  //  Remove book from UI
+  //  Remove Book from UI
   UI.deleteBook(e.target);
+
+  //  Remove Book from Store
+  Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
 
   // Show success message
   UI.showAlert("Book Removed", "success");
