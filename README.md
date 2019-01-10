@@ -1,2 +1,2 @@
 # js_bookList
-JS BookList App without frameworks
+JS BookList App without frameworks using localStorage
